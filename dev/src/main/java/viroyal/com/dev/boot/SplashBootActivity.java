@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.suntiago.baseui.activity.base.AppDelegateBase;
 import com.suntiago.baseui.activity.base.theMvp.model.IModel;
 import com.suntiago.baseui.utils.SPUtils;
+import com.suntiago.baseui.utils.log.Slog;
 import com.suntiago.network.network.Api;
 import com.suntiago.network.network.BaseRspObserver;
 
@@ -871,7 +872,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
     } else if (null != normalStrategyList && normalStrategyList.size() > 0) {
       //常规策略
       Strategy strategy = normalStrategyList.get(0);
-      tomorrowStartDate = DateUtil.getTodayDate() + " " + strategy.on_time.split(" ")[1];
+      tomorrowStartDate = DateUtil.getNextDate() + " " + strategy.on_time.split(" ")[1];
     } else {
       //无匹配策略
       tomorrowStartDate = "";
@@ -902,7 +903,10 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
                     LztekUtil.getInstance().hardShutdown(SplashBootActivity.this);
                   } else {
                     long tomorrowStartDateTimeStamp = DateUtil.getTimeStamp(tomorrowStartDate);
-                    LztekUtil.getInstance().alarmPoweron((int) (tomorrowStartDateTimeStamp - todayEndDateTimeStamp), SplashBootActivity.this);
+                    Slog.d(TAG, "syncOneSecondFour todayEndDateTimeStamp=" + todayEndDateTimeStamp);
+                    Slog.d(TAG, "syncOneSecondFour tomorrowStartDateTimeStamp=" + tomorrowStartDateTimeStamp);
+                    Slog.d(TAG, "syncOneSecondFour tomorrowStartDateTimeStamp-todayEndDateTimeStamp=" + (int) (tomorrowStartDateTimeStamp - todayEndDateTimeStamp));
+                    LztekUtil.getInstance().alarmPoweron((int) (Math.abs(tomorrowStartDateTimeStamp - todayEndDateTimeStamp)), SplashBootActivity.this);
                   }
                 } else {
                   //时间未到
