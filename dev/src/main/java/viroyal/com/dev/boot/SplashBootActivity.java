@@ -627,6 +627,12 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
     setTodayStrategy(bootModel);
     //成功
     Tomorrow tomorrow = bootModel.tomorrow;
+    try {
+      Slog.d(TAG, "setStrategyFifteen: tomorrow="+tomorrow.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      Slog.d(TAG, "setStrategyFifteen: Exception=" + e.getMessage());
+    }
     if (null != tomorrow) {
       setTomorrowStrategyFifteen(tomorrow);
     } else {
@@ -648,6 +654,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
       //今天无策略 18点更新一次
       todayEndDate = DateUtil.getTodayDate() + " 18:00:00";
     }
+    Slog.d(TAG, "setTodayStrategy: todayEndDate=" + todayEndDate);
   }
 
   private void setTomorrowOffLineStrategyFifteen(List<Strategy> strategyList) {
@@ -700,6 +707,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
    * @param tomorrow
    */
   private void setTomorrowStrategyFifteen(Tomorrow tomorrow) {
+    Slog.d(TAG, "setTomorrowStrategyFifteen: tomorrow=" + tomorrow.toString());
     //false - 关闭自动开机 true - 开启自动开机
     Intent autoBootIntent = new Intent("com.hra.setAutoBoot");
     autoBootIntent.putExtra("key", true);
@@ -730,6 +738,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
     shutdownWeekIntent.putExtra("key",  DateUtil.getWeek(tomorrow.week));
     sendBroadcast(shutdownWeekIntent);
   }
+
 
   /**
    * 离线设置策略15
@@ -815,7 +824,9 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
                   return;
                 }
                 long todayEndDateTimeStamp = DateUtil.getTimeStamp(todayEndDate);
+                Slog.d(TAG, "call: syncOneSecondFifteen todayEndDateTimeStamp=" + todayEndDateTimeStamp);
                 if (System.currentTimeMillis() / 1000 >= todayEndDateTimeStamp) {
+                  Slog.d(TAG, "call: shutdown="+System.currentTimeMillis() / 1000);
                   shutdownStrategy();
                 } else {
                   //时间未到

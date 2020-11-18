@@ -26,4 +26,15 @@ public class Tomorrow {
 
   @SerializedName("week")
   public String week;
+
+  @Override
+  public String toString() {
+    return "Tomorrow{" +
+            "on_hour=" + on_hour +
+            ", on_minute=" + on_minute +
+            ", off_hour=" + off_hour +
+            ", off_minute=" + off_minute +
+            ", week='" + week + '\'' +
+            '}';
+  }
 }
