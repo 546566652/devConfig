@@ -53,4 +53,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile 'com.github.suntiago:baseui:641d4e05cf'
     implementation 'com.tencent:mmkv:1.0.19'
+    implementation files('libs/poweronoff.jar')
 }
