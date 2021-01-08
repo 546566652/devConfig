@@ -113,7 +113,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
                 //老班牌
 //        setOffLineStrategyZero();
 
-                if (android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
+                if (android.os.Build.MODEL.equals("T2") || android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
                     //新班牌(华瑞安)
                     resetStrategyFifteen();
                 } else if (android.os.Build.MODEL.equals("rk3288")) {
@@ -159,7 +159,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
                 //老班牌
 //        setOffLineStrategyZero();
 
-                if (android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
+                if (android.os.Build.MODEL.equals("T2") || android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
                     //新班牌(华瑞安)
                     setOffLineStrategyFifteen();
                 } else if (android.os.Build.MODEL.equals("rk3288")) {
@@ -258,7 +258,7 @@ public abstract class SplashBootActivity<T extends AppDelegateBase, D extends IM
             case 0:
                 //老班牌
 //        setStrategyZero(rsp);
-                if (android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
+                if (android.os.Build.MODEL.equals("T2") || android.os.Build.MODEL.equals("T3") || android.os.Build.MODEL.equals("T6")) {
                     //新班牌(华瑞安)
                     setStrategyFifteen(rsp);
                 } else if (android.os.Build.MODEL.equals("rk3288")) {
